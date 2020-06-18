@@ -64,6 +64,7 @@ require("handlers/login_handler.php");
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Log In</button>
+        <span>Register for a new account <a href="register.php">here.</a></span>
     </form>
 </body>
 

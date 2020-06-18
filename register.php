@@ -34,13 +34,13 @@ require("handlers/register_handler.php");
         }
     </style>
     <link rel="stylesheet" href="assets/css/floating-labels.css">
-    <title>Log In</title>
+    <title>Register</title>
 </head>
 
 <body>
     <form method="post" class="form-signin">
         <div class="text-center mb-4">
-            <h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
+            <h2 class="h3 mb-3 font-weight-normal">Register</h2>
             <div class="errors">
                 <?php
                 if (count($error) > 0) {
