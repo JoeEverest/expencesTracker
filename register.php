@@ -1,6 +1,6 @@
 <?php
-include("config/config.php");
-include("handlers/register_handler.php");
+require("config/config.php");
+require("handlers/register_handler.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

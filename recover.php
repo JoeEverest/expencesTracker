@@ -1,6 +1,6 @@
     <?php
-    include("config/config.php");
-    include("handlers/recovery_handler.php");
+    require("config/config.php");
+    require("handlers/recovery_handler.php");
     ?>
     <!DOCTYPE html>
     <html lang="en">

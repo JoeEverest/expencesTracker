@@ -88,7 +88,7 @@ require('handlers/add_income_handler.php');
         </div>
         <br>
         <?php
-        $getBalanceData = mysqli_query($connect, "SELECT balance FROM transactions ORDER BY id DESC LIMIT 1");
+        $getBalanceData = mysqli_query($connect, "SELECT balance FROM transactions WHERE user = '$user' ORDER BY id DESC LIMIT 1");
         $balanceData = mysqli_fetch_array($getBalanceData);
         $currentBalance = $balanceData['balance'];
         ?>
@@ -135,7 +135,19 @@ require('handlers/add_income_handler.php');
                     </thead>
                     <tbody>
                         <?php
-                        
+                        $getIncomesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'INCOME' ORDER BY id DESC");
+                        while ($getIncomeData = mysqli_fetch_array($getIncomesQuery)) {
+                            $date = $getIncomeData['date'];
+                            $transactionName = $getIncomeData['transaction_name'];
+                            $amount = $getIncomeData['amount'];
+                        ?>
+                            <tr>
+                                <td><?php echo $date; ?></td>
+                                <td><?php echo $transactionName; ?></td>
+                                <td><?php echo $amount . "/="; ?></td>
+                            </tr>
+                        <?php
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -148,7 +160,21 @@ require('handlers/add_income_handler.php');
                         <th>Amount</th>
                     </thead>
                     <tbody>
-
+                        <?php
+                        $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                        while ($getExpencesData = mysqli_fetch_array($getExpencesQuery)) {
+                            $date = $getExpencesData['date'];
+                            $transactionName = $getExpencesData['transaction_name'];
+                            $amount = $getExpencesData['amount'];
+                        ?>
+                            <tr>
+                                <td><?php echo $date; ?></td>
+                                <td><?php echo $transactionName; ?></td>
+                                <td><?php echo $amount . "/="; ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

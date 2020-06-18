@@ -1,7 +1,7 @@
 <?php
-include("config/config.php");
+require("config/config.php");
 session_start();
-include("handlers/login_handler.php");
+require("handlers/login_handler.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

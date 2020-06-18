@@ -1,7 +1,7 @@
 <?php
-include('config/config.php');
-include('session.php');
-include('handlers/verification_handler.php')
+require('config/config.php');
+require('session.php');
+require('handlers/verification_handler.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
