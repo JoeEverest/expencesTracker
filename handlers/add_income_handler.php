@@ -7,7 +7,7 @@ if (isset($_POST['add_income'])) {
         $incomeAmount = $_POST['income_amount'];
         $time = date("Y-m-d");
 
-        $getData = mysqli_query($connect, "SELECT balance FROM transactions ORDER BY id DESC LIMIT 1");
+        $getData = mysqli_query($connect, "SELECT balance FROM transactions WHERE user = '$user ORDER BY id DESC LIMIT 1");
         $balancedata = mysqli_fetch_array($getData);
 
         $balance = $balancedata['balance'] + $incomeAmount;
