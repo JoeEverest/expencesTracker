@@ -26,15 +26,34 @@ require('handlers/add_income_handler.php');
             font-family: 'Open Sans', sans-serif;
         }
 
+        body {
+            background-image: url("assets/images/kilian-karger-DxEVzwJGzCI-unsplash.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .left,
+        .right {
+            margin: 10px 0;
+        }
+
         .container {
             margin-top: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 2px 3px 17px 10px #444141;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
         }
     </style>
     <title>Xpence: Expences Tracker</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Xpence</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,6 +71,7 @@ require('handlers/add_income_handler.php');
     </nav>
 
     <div class="container">
+        <br>
         <center>
             <h3>Expences Tracker</h3>
             <hr>
@@ -118,16 +138,8 @@ require('handlers/add_income_handler.php');
                 <center>
                     <h4>Incomes</h4>
                 </center>
-            </div>
-            <div class="col-md-6">
-                <center>
-                    <h4>Expenses</h4>
-                </center>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="table table-stripped">
+                <hr>
+                <table class="table table-striped">
                     <thead class="thead-dark">
                         <th>Date</th>
                         <th>Lable</th>
@@ -153,7 +165,11 @@ require('handlers/add_income_handler.php');
                 </table>
             </div>
             <div class="col-md-6">
-                <table class="table table-stripped">
+                <center>
+                    <h4>Expenses</h4>
+                </center>
+                <hr>
+                <table class="table table-striped">
                     <thead class="thead-dark">
                         <th>Date</th>
                         <th>Lable</th>
