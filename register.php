@@ -77,7 +77,8 @@ require("handlers/register_handler.php");
             <label for="password2">Confirm Password</label>
             <input class="form-control" type="password" name="password2" id="inputpassword2" placeholder="Confirm Password">
         </div><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Register</button><br>
+        <span>Already have an account? Log in<a href="login.php">here.</a></span>
     </form>
 </body>
 
