@@ -67,7 +67,7 @@ require('handlers/add_income_handler.php');
                         <div class="col">
                             <input type="number" class="form-control" name="income_amount" placeholder="Income Amount">
                         </div>
-                        <button type="submit" name="add_income" class="btn btn-outline-danger">Add Income</button>
+                        <button type="submit" name="add_income" class="btn btn-danger">Add Income</button>
                     </div>
                 </form>
             </div>
@@ -80,7 +80,7 @@ require('handlers/add_income_handler.php');
                         <div class="col">
                             <input type="number" class="form-control" name="expence_amount" placeholder="Expence Amount">
                         </div>
-                        <button type="submit" name="add_expence" class="btn btn-outline-success">Add Expence</button>
+                        <button type="submit" name="add_expence" class="btn btn-success">Add Expence</button>
                     </div>
                 </form>
             </div>
