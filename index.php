@@ -113,7 +113,7 @@ require('handlers/add_income_handler.php');
         $currentBalance = $balanceData['balance'];
         ?>
         <center>
-            <h4>Current Balance: <?php echo $currentBalance . '/='; ?></h4>
+            <h4>Current Balance: <?php echo number_format($currentBalance) . '/='; ?></h4>
         </center>
         <?php
         if ($errors) {
@@ -156,7 +156,7 @@ require('handlers/add_income_handler.php');
                             <tr>
                                 <td><?php echo $date; ?></td>
                                 <td><?php echo $transactionName; ?></td>
-                                <td><?php echo $amount . "/="; ?></td>
+                                <td><?php echo number_format($amount) . "/="; ?></td>
                             </tr>
                         <?php
                         }
@@ -186,7 +186,7 @@ require('handlers/add_income_handler.php');
                             <tr>
                                 <td><?php echo $date; ?></td>
                                 <td><?php echo $transactionName; ?></td>
-                                <td><?php echo $amount . "/="; ?></td>
+                                <td><?php echo number_format($amount) . "/="; ?></td>
                             </tr>
                         <?php
                         }
