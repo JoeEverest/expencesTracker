@@ -105,6 +105,33 @@ require('handlers/add_income_handler.php');
                 </form>
             </div>
 
+            <div class="col-md-12">
+                <center>
+                    <form method="get">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-8">
+                                <select name="tag" class="form-control">
+                                    <option value="">--- FILTER BY TAG ---</option>
+                                    <?php
+                                    $getTags = mysqli_query($connect, "SELECT `transaction_name` FROM `transactions` WHERE `user` = '$user' AND `transaction_type` = 'EXPENCE' GROUP BY `transaction_name` ORDER BY `transaction_name`");
+                                    while ($tags = mysqli_fetch_array($getTags)) {
+                                        $tagName = $tags['transaction_name'];
+                                    ?>
+                                        <option value="<?php echo $tagName; ?>"><?php echo $tagName; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-success">Add Expence</button>
+                            </div>
+                        </div>
+                    </form>
+                </center>
+            </div>
+
         </div>
         <br>
         <?php
@@ -147,11 +174,13 @@ require('handlers/add_income_handler.php');
                     </thead>
                     <tbody>
                         <?php
+                        $total = 0;
                         $getIncomesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'INCOME' ORDER BY id DESC");
                         while ($getIncomeData = mysqli_fetch_array($getIncomesQuery)) {
                             $date = $getIncomeData['date'];
                             $transactionName = $getIncomeData['transaction_name'];
                             $amount = $getIncomeData['amount'];
+                            $total = $total + $amount;
                         ?>
                             <tr>
                                 <td><?php echo $date; ?></td>
@@ -161,6 +190,10 @@ require('handlers/add_income_handler.php');
                         <?php
                         }
                         ?>
+                        <tr>
+                            <th colspan="2">Total Earnings</th>
+                            <th><?php echo number_format($total) . "/="; ?></th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -177,11 +210,18 @@ require('handlers/add_income_handler.php');
                     </thead>
                     <tbody>
                         <?php
-                        $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                        $total = 0;
+                        if (isset($_GET['tag'])) {
+                            $tagname = $_GET['tag'];
+                            $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                        } else {
+                            $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                        }
                         while ($getExpencesData = mysqli_fetch_array($getExpencesQuery)) {
                             $date = $getExpencesData['date'];
                             $transactionName = $getExpencesData['transaction_name'];
                             $amount = $getExpencesData['amount'];
+                            $total = $total + $amount;
                         ?>
                             <tr>
                                 <td><?php echo $date; ?></td>
@@ -191,6 +231,10 @@ require('handlers/add_income_handler.php');
                         <?php
                         }
                         ?>
+                        <tr>
+                            <th colspan="2">Total Expenditure</th>
+                            <th><?php echo number_format($total) . "/="; ?></th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
