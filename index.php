@@ -112,7 +112,7 @@ require('handlers/add_income_handler.php');
                             <div class="col-md-1"></div>
                             <div class="col-md-8">
                                 <select name="tag" class="form-control">
-                                    <option value="">--- FILTER BY TAG ---</option>
+                                    <option value="">--- FILTER BY TAGS ---</option>
                                     <?php
                                     $getTags = mysqli_query($connect, "SELECT `transaction_name` FROM `transactions` WHERE `user` = '$user' AND `transaction_type` = 'EXPENCE' GROUP BY `transaction_name` ORDER BY `transaction_name`");
                                     while ($tags = mysqli_fetch_array($getTags)) {
@@ -125,7 +125,8 @@ require('handlers/add_income_handler.php');
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-success">Add Expence</button>
+                                <button type="submit" class="btn btn-warning">Filter By Tag</button>
+                                <a href="index.php" class="btn btn-info">Reset Filter</a>
                             </div>
                         </div>
                     </form>
@@ -191,7 +192,7 @@ require('handlers/add_income_handler.php');
                         }
                         ?>
                         <tr>
-                            <th colspan="2">Total Earnings</th>
+                            <th colspan="2">Total Earnings:</th>
                             <th><?php echo number_format($total) . "/="; ?></th>
                         </tr>
                     </tbody>
@@ -212,8 +213,12 @@ require('handlers/add_income_handler.php');
                         <?php
                         $total = 0;
                         if (isset($_GET['tag'])) {
-                            $tagname = $_GET['tag'];
-                            $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                            if ($_GET['tag'] == "") {
+                                header("Location: index.php");
+                            } else {
+                                $tagname = $_GET['tag'];
+                                $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                            }
                         } else {
                             $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
                         }
@@ -232,7 +237,7 @@ require('handlers/add_income_handler.php');
                         }
                         ?>
                         <tr>
-                            <th colspan="2">Total Expenditure</th>
+                            <th colspan="2">Total Expenditure:</th>
                             <th><?php echo number_format($total) . "/="; ?></th>
                         </tr>
                     </tbody>
