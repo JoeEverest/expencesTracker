@@ -108,25 +108,31 @@ require('handlers/add_income_handler.php');
                 <center>
                     <form method="get">
                         <h4>Filter by Date</h4>
-                        <div class="form-inline d-flex justify-content-center">
-                            <div class="form-group mb-2">
-                                <label for="from-date">From: </label>
-                                <input type="date" name="from" class="form-control" id="from-date">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="from-date">From: </label>
+                                    <input type="date" name="from" class="form-control" id="from-date">
+                                </div>
                             </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="to-date">To: </label>
-                                <input type="date" name="to" class="form-control" id="to-date">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="to-date">To: </label>
+                                    <input type="date" name="to" class="form-control" id="to-date">
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-success mb-2">Filter</button>
                         </div>
+                        <button type="submit" class="col-sm-10 btn btn-success">Filter</button>
                     </form>
                 </center>
+                <br>
             </div>
             <div class="col-md-12">
                 <center>
                     <form method="get">
                         <div class="row">
-                            <div class="col-md-1"></div>
+                            <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <select name="tag" class="form-control">
                                     <option value="">--- FILTER BY TAGS ---</option>
@@ -141,7 +147,10 @@ require('handlers/add_income_handler.php');
                                     ?>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col">
+                                <br>
                                 <button type="submit" class="btn btn-warning">Filter By Tag</button>
                                 <a href="index.php" class="btn btn-info">Reset Filter</a>
                             </div>
