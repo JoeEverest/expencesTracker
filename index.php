@@ -104,7 +104,24 @@ require('handlers/add_income_handler.php');
                     </div>
                 </form>
             </div>
-
+            <div class="col-md-12">
+                <center>
+                    <form method="get">
+                        <h4>Filter by Date</h4>
+                        <div class="form-inline d-flex justify-content-center">
+                            <div class="form-group mb-2">
+                                <label for="from-date">From: </label>
+                                <input type="date" name="from" class="form-control" id="from-date">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="to-date">To: </label>
+                                <input type="date" name="to" class="form-control" id="to-date">
+                            </div>
+                            <button type="submit" class="btn btn-success mb-2">Filter</button>
+                        </div>
+                    </form>
+                </center>
+            </div>
             <div class="col-md-12">
                 <center>
                     <form method="get">
@@ -212,15 +229,30 @@ require('handlers/add_income_handler.php');
                     <tbody>
                         <?php
                         $total = 0;
-                        if (isset($_GET['tag'])) {
-                            if ($_GET['tag'] == "") {
-                                header("Location: index.php");
+                        if (isset($_GET['from']) && isset($_GET['to'])) {
+                            $from = $_GET['from'];
+                            $to = $_GET['to'];
+                            if (isset($_GET['tag'])) {
+                                if ($_GET['tag'] == "") {
+                                    header("Location: index.php");
+                                } else {
+                                    $tagname = $_GET['tag'];
+                                    $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' AND date >= '$from' AND date <= '$to' ORDER BY id DESC");
+                                }
                             } else {
-                                $tagname = $_GET['tag'];
-                                $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                                $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' AND date >= '$from' AND date <= '$to'  AND date >= '$from' AND date <= '$to' ORDER BY id DESC");
                             }
                         } else {
-                            $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                            if (isset($_GET['tag'])) {
+                                if ($_GET['tag'] == "") {
+                                    header("Location: index.php");
+                                } else {
+                                    $tagname = $_GET['tag'];
+                                    $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_name = '$tagname' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                                }
+                            } else {
+                                $getExpencesQuery = mysqli_query($connect, "SELECT * FROM transactions WHERE user = '$user' AND transaction_type = 'EXPENCE' ORDER BY id DESC");
+                            }
                         }
                         while ($getExpencesData = mysqli_fetch_array($getExpencesQuery)) {
                             $date = $getExpencesData['date'];
