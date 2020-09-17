@@ -52,6 +52,7 @@ require('handlers/add_income_handler.php');
     />
     <link rel="stylesheet" href="assets/css/native.css" />
     <title>Xpence: Expences Tracker</title>
+    <link rel="manifest" href="manifest.webmanifest">
   </head>
   <body>
     <div
@@ -205,11 +206,11 @@ require('handlers/add_income_handler.php');
         ?>
       </div>
       <div class="bottom-bar">
-        <div class="icons active" id="income">
+        <div class="icons" id="income">
           <img src="assets/icons/input-24px.svg" alt="Incomes" />
           <p>Incomes</p>
         </div>
-        <div class="icons" id="expence">
+        <div class="icons active" id="expence">
           <img src="assets/icons/payment-24px.svg" alt="Expences" />
           <p>Expenses</p>
         </div>
@@ -238,7 +239,7 @@ require('handlers/add_income_handler.php');
       </div>
       <br />
       <div class="tables">
-        <div class="incomes" id="incomes">
+        <div class="display-none incomes" id="incomes">
           <center>
             <h4>Incomes</h4>
           </center>
@@ -274,7 +275,7 @@ require('handlers/add_income_handler.php');
             </tbody>
           </table>
         </div>
-        <div class="display-none expences" id="expences">
+        <div class="expences" id="expences">
           <center>
             <h4>Expenses</h4>
           </center>
@@ -427,11 +428,11 @@ require('handlers/add_income_handler.php');
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
     </div>
+    <br><br><br>
     <script>
       $("#expence").click(function () {
         $("#incomes").addClass("display-none");
