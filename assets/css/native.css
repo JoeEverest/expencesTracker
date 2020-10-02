@@ -25,10 +25,7 @@ body {
   margin: 0;
 }
 .balance {
-  margin-top: 70px;
-}
-.display-none {
-  display: none;
+  margin-top: 30px;
 }
 .top-bar {
   width: 100vw;
@@ -54,7 +51,10 @@ body {
   justify-content: center;
   padding: 10px;
 }
-.filter{
+.filter {
   background-color: white;
   border: none;
+}
+.display-none {
+  display: none;
 }
